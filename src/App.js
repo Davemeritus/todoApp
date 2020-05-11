@@ -35,21 +35,23 @@ class App extends Component {
     this.setState({
       todos: [...this.state.todos.filter((todo) => todo.id !== id)],
       axios,
-    }).delete(`https://jsonplaceholder.typicode.com/todos/$ {id}`);
+    }).delete(`https://jsonplaceholder.typicode.com/todos/${id}`);
     // .then((res) =>
-    // this.setState({
-    //  todos: [...this.state.todos.filter((todo) => todo.id !== id)],
-    // })
+
+    //  })
     // );
   };
 
   addTodo = (title) => {
-    axios
-      .post("https://jsonplaceholder.typicode.com/todos", {
-        title,
-        completed: false,
-      })
-      .then((res) => this.setState({ todos: [...this.state.todos, res.data] }));
+    const listCopy = this.state.todos;
+    listCopy.unshift(title);
+    this.setState({ todos: listCopy });
+    // axios;
+    // .post("https://jsonplaceholder.typicode.com/todos", {
+    // title,
+    // completed: false,
+    // })
+    //.then((res) => this.setState({ todos: [...this.state.todos, res.data] }));
   };
 
   render() {
